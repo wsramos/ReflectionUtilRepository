@@ -1,7 +1,11 @@
+package br.com.loriens.reflectionutilrepository.reflection;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
+
+import static br.com.loriens.reflectionutilrepository.common.CommonMethods.capitalize;
 
 /**
  * Utility class for reflecting and invoking getter methods on nested fields.
@@ -55,19 +59,6 @@ public class GetterReflect {
     }
 
     /**
-     * Capitalizes the first letter of the given string.
-     *
-     * @param str the string to capitalize
-     * @return the capitalized string
-     */
-    private static String capitalize(String str) {
-        if (str == null || str.isEmpty()) {
-            return str;
-        }
-        return str.substring(0, 1).toUpperCase() + str.substring(1);
-    }
-
-    /**
      * Constructs the getter method name for a given field name.
      *
      * @param fieldName the field name
@@ -87,7 +78,7 @@ public class GetterReflect {
      * @throws InvocationTargetException if the getter method throws an exception
      * @throws IllegalAccessException if the getter method is inaccessible
      */
-    private static Object invokeGetter(Object obj, String fieldName) throws NoSuchMethodException,
+    public static Object invokeGetter(Object obj, String fieldName) throws NoSuchMethodException,
             InvocationTargetException, IllegalAccessException {
         return obj.getClass().getDeclaredMethod(getterMethodName(fieldName)).invoke(obj);
     }
